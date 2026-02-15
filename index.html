@@ -6,100 +6,144 @@
     <title>Para mi niña (Aylee) ❤️</title>
     <style>
         body {
-            background: linear-gradient(180deg, #ff0077 0%, #ff66aa 100%);
+            background-color: #ff007f;
+            background-image: radial-gradient(circle, #ff007f, #b30059);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            padding-top: 30px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
+
+        /* La tarjeta blanca del video */
         .card {
-            background: #fdf5e6;
-            width: 85%;
+            background: #fff8f0;
+            width: 90%;
             max-width: 380px;
-            border-radius: 25px;
-            padding: 25px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-radius: 40px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             text-align: center;
         }
-        .tree-placeholder {
-            font-size: 100px;
+
+        /* El área del árbol */
+        .tree-area {
+            background: #fff8f0;
+            padding: 20px;
             cursor: pointer;
-            transition: transform 0.3s;
-            margin-bottom: 10px;
         }
-        .tree-placeholder:hover { transform: scale(1.1); }
-        .text-content { text-align: left; color: #333; }
-        .divider { height: 1px; background: #ddd; margin: 15px 0; }
-        .counter { font-weight: bold; color: #e91e63; font-size: 0.95rem; line-height: 1.5; }
-        .hidden { display: none; }
-        
-        /* Ventana de código igual al video */
-        .code-window {
+
+        .tree-img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+        }
+
+        /* Texto de amor igual al video */
+        .text-section {
+            padding: 0 25px 20px 25px;
+            text-align: left;
+            color: #333;
+        }
+
+        .intro { font-size: 1.1rem; margin-bottom: 5px; font-weight: bold; }
+        .quote { font-size: 1rem; line-height: 1.4; color: #444; }
+
+        .line { height: 1.5px; background: #ddd; margin: 15px 25px; }
+
+        /* Contador igual al video */
+        .counter-section {
+            padding: 0 25px 30px 25px;
+            text-align: left;
+            font-size: 0.95rem;
+            color: #222;
+        }
+
+        #timer { font-weight: bold; }
+
+        /* La ventana de código abajo */
+        .code-box {
             background: #0d1117;
             width: 85%;
-            max-width: 350px;
-            margin-top: 25px;
-            border-radius: 12px;
-            padding: 15px;
-            font-family: 'Consolas', monospace;
+            max-width: 340px;
+            margin-top: 30px;
+            border-radius: 15px;
+            padding: 18px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             color: #c9d1d9;
-            font-size: 13px;
             text-align: left;
+            font-size: 13px;
         }
-        .dots { display: flex; gap: 6px; margin-bottom: 10px; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        .dots { display: flex; gap: 7px; margin-bottom: 12px; }
+        .dot { width: 11px; height: 11px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        .purple { color: #d2a8ff; } .blue { color: #79c0ff; } .orange { color: #ffa657; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="tree-placeholder" id="heart-btn" onclick="revelar()">🌳❤️</div>
-        
-        <div id="main-content" class="hidden">
-            <div class="text-content">
-                <p><strong>Para mi niña (Aylee) ❤️</strong></p>
-                <p>Si pudiera elegir un lugar seguro, sería a tu lado. Cuanto más tiempo estoy contigo más te amo.</p>
-            </div>
-            <div class="divider"></div>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 5px;">Mi amor por ti comenzó hace...</p>
-            <div class="counter" id="reloj"></div>
+        <div class="tree-area" onclick="mostrarTodo()">
+            <img src="https://i.ibb.co/Xxd9YmY/heart-tree.png" class="tree-img" id="arbol" alt="Árbol de Amor">
+            <p id="toca" style="color:#999; font-size: 0.8rem; margin-top:0;">(Toca el árbol ❤️)</p>
         </div>
-        <p id="hint" style="color: #999; font-size: 0.8rem;">(Toca el árbol para ver la sorpresa)</p>
+        
+        <div id="surprise" class="hidden">
+            <div class="text-section">
+                <div class="intro">Para mi niña (Aylee) ❤️</div>
+                <div class="quote">
+                    Si pudiera elegir un lugar seguro, sería a tu lado.<br>
+                    Cuanto más tiempo estoy contigo más te amo.
+                </div>
+            </div>
+            <div class="line"></div>
+            <div class="counter-section">
+                Mi amor por ti comenzó hace... <br>
+                <span id="reloj"></span>
+            </div>
+        </div>
     </div>
 
-    <div class="code-window">
+    <div class="code-box">
         <div class="dots">
-            <div class="dot" style="background: #ff5f56;"></div>
-            <div class="dot" style="background: #ffbd2e;"></div>
-            <div class="dot" style="background: #27c93f;"></div>
+            <div class="dot red"></div> <div class="dot yellow"></div> <div class="dot green"></div>
         </div>
-        <div style="color: #8b949e;">Style.css</div>
-        <div style="margin-top:5px;"><span style="color: #d2a8ff;">.San_Valentin</span> {</div>
-        <div>&nbsp;&nbsp;<span style="color: #79c0ff;">position</span>: <span style="color: #ffa657;">absolute</span>;</div>
-        <div>&nbsp;&nbsp;<span style="color: #79c0ff;">font-family</span>: <span style="color: #ffa657;">"Te Amo"</span>;</div>
+        <div style="color: #8b949e; margin-bottom: 8px;">Style.css</div>
+        <div><span class="purple">.San_Valentin</span> {</div>
+        <div>&nbsp;&nbsp;<span class="blue">position</span>: <span class="orange">absolute</span>;</div>
+        <div>&nbsp;&nbsp;<span class="blue">font-family</span>: <span class="orange">"Te Amo"</span>;</div>
+        <div>&nbsp;&nbsp;<span class="blue">background</span>: <span class="orange">var(--letter)</span>;</div>
         <div>}</div>
     </div>
 
     <script>
-        function revelar() {
-            document.getElementById('main-content').classList.remove('hidden');
-            document.getElementById('hint').classList.add('hidden');
-            setInterval(updateTime, 1000);
-            updateTime();
+        function mostrarTodo() {
+            document.getElementById('surprise').classList.remove('hidden');
+            document.getElementById('toca').classList.add('hidden');
+            setInterval(actualizar, 1000);
+            actualizar();
         }
 
-        function updateTime() {
-            const start = new Date(2025, 10, 15); // Los 91 días de Isaac
-            const now = new Date();
-            const diff = now - start;
-            const d = Math.floor(diff / 86400000);
-            const h = Math.floor((diff / 3600000) % 24);
-            const m = Math.floor((diff / 60000) % 60);
+        function actualizar() {
+            const inicio = new Date(2025, 10, 15); // Los 91 días exactos
+            const ahora = new Date();
+            const diff = ahora - inicio;
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
             const s = Math.floor((diff / 1000) % 60);
-            document.getElementById('reloj').innerHTML = `${d} días ${h}h ${m}m ${s}s`;
+
+            document.getElementById('reloj').innerHTML = 
+                `${d} dias ${h.toString().padStart(2, '0')} minutos ${m.toString().padStart(2, '0')} segundos`;
         }
     </script>
 </body>
