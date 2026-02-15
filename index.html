@@ -5,117 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi niña (Aylee) ❤️</title>
     <style>
-        body { 
-            background-color: #fce4ec; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            min-height: 100vh; 
-            margin: 0; 
-            font-family: 'Arial', sans-serif; 
+        body {
+            background: linear-gradient(180deg, #ff0077 0%, #ff66aa 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
         }
-        .card { 
-            background: #fff5f7; 
-            padding: 30px; 
-            border-radius: 25px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
-            text-align: center; 
-            width: 90%; 
-            max-width: 400px; 
+        .card {
+            background: #fdf5e6;
+            width: 85%;
+            max-width: 380px;
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
         }
-        .tree-container { 
-            width: 100%; 
-            height: 250px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: flex-end; 
-            margin-bottom: 20px; 
-            cursor: pointer; 
+        .tree-placeholder {
+            font-size: 100px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-bottom: 10px;
         }
-        .heart-icon { 
-            font-size: 80px; 
-            color: #e91e63; 
-            animation: pulse 1.5s infinite; 
-        }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .tree-placeholder:hover { transform: scale(1.1); }
+        .text-content { text-align: left; color: #333; }
+        .divider { height: 1px; background: #ddd; margin: 15px 0; }
+        .counter { font-weight: bold; color: #e91e63; font-size: 0.95rem; line-height: 1.5; }
         .hidden { display: none; }
-        h2 { color: #d81b60; margin-bottom: 10px; }
-        .message { color: #444; line-height: 1.6; margin: 15px 0; font-size: 1.1rem; }
-        .timer-digits { 
-            font-weight: bold; 
-            color: #ad1457; 
-            font-size: 1.1rem; 
-            margin-top: 10px; 
-            background: #fff; 
-            padding: 10px; 
-            border-radius: 10px; 
-            border: 1px solid #f8bbd0; 
+        
+        /* Ventana de código igual al video */
+        .code-window {
+            background: #0d1117;
+            width: 85%;
+            max-width: 350px;
+            margin-top: 25px;
+            border-radius: 12px;
+            padding: 15px;
+            font-family: 'Consolas', monospace;
+            color: #c9d1d9;
+            font-size: 13px;
+            text-align: left;
         }
-        .code-box { 
-            background: #1e1e1e; 
-            color: #d4d4d4; 
-            padding: 15px; 
-            border-radius: 10px; 
-            font-family: 'Consolas', monospace; 
-            font-size: 13px; 
-            width: 85%; 
-            max-width: 320px; 
-            margin-top: 20px; 
-            text-align: left; 
-        }
+        .dots { display: flex; gap: 6px; margin-bottom: 10px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div class="tree-container" id="trigger" onclick="revelar()">
-            <div class="heart-icon" id="main-heart">❤️</div>
-            <img id="tree-img" src="https://img.icons8.com/plasticine/200/love-tree.png" class="hidden">
-        </div>
-
-        <div id="content" class="hidden">
-            <h2>Para mi niña (Aylee) ❤️</h2>
-            <div class="message">
-                <strong>Isaac:</strong><br>
-                Si pudiera elegir un lugar seguro, sería a tu lado.<br>
-                Cuanto más tiempo estoy contigo más te amo.
+        <div class="tree-placeholder" id="heart-btn" onclick="revelar()">🌳❤️</div>
+        
+        <div id="main-content" class="hidden">
+            <div class="text-content">
+                <p><strong>Para mi niña (Aylee) ❤️</strong></p>
+                <p>Si pudiera elegir un lugar seguro, sería a tu lado. Cuanto más tiempo estoy contigo más te amo.</p>
             </div>
-            <div style="color: #888; font-size: 0.9rem;">Llevamos conociéndonos...</div>
-            <div class="timer-digits" id="contador">Calculando nuestro tiempo...</div>
+            <div class="divider"></div>
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 5px;">Mi amor por ti comenzó hace...</p>
+            <div class="counter" id="reloj"></div>
         </div>
+        <p id="hint" style="color: #999; font-size: 0.8rem;">(Toca el árbol para ver la sorpresa)</p>
     </div>
 
-    <div class="code-box">
-        <span style="color: #569cd6;">.San_Valentin</span> {<br>
-        &nbsp;&nbsp;position: <span style="color: #ce9178;">absolute</span>;<br>
-        &nbsp;&nbsp;width: <span style="color: #ce9178;">90%</span>;<br>
-        &nbsp;&nbsp;font-family: <span style="color: #ce9178;">"Te Amo"</span>;<br>
-        }
+    <div class="code-window">
+        <div class="dots">
+            <div class="dot" style="background: #ff5f56;"></div>
+            <div class="dot" style="background: #ffbd2e;"></div>
+            <div class="dot" style="background: #27c93f;"></div>
+        </div>
+        <div style="color: #8b949e;">Style.css</div>
+        <div style="margin-top:5px;"><span style="color: #d2a8ff;">.San_Valentin</span> {</div>
+        <div>&nbsp;&nbsp;<span style="color: #79c0ff;">position</span>: <span style="color: #ffa657;">absolute</span>;</div>
+        <div>&nbsp;&nbsp;<span style="color: #79c0ff;">font-family</span>: <span style="color: #ffa657;">"Te Amo"</span>;</div>
+        <div>}</div>
     </div>
 
     <script>
         function revelar() {
-            document.getElementById('main-heart').classList.add('hidden');
-            document.getElementById('tree-img').classList.remove('hidden');
-            document.getElementById('content').classList.remove('hidden');
-            setInterval(actualizarReloj, 1000);
-            actualizarReloj();
+            document.getElementById('main-content').classList.remove('hidden');
+            document.getElementById('hint').classList.add('hidden');
+            setInterval(updateTime, 1000);
+            updateTime();
         }
 
-        function actualizarReloj() {
-            // Se conocieron hace 91 días (15 de Noviembre 2025)
-            const fechaInicio = new Date(2025, 10, 15, 0, 0, 0); 
-            const ahora = new Date();
-            const diff = ahora - fechaInicio;
-
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / 1000 / 60) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
-
-            document.getElementById('contador').innerHTML = 
-                `${dias} días ${horas}h ${minutos}m ${segundos}s`;
+        function updateTime() {
+            const start = new Date(2025, 10, 15); // Los 91 días de Isaac
+            const now = new Date();
+            const diff = now - start;
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff / 3600000) % 24);
+            const m = Math.floor((diff / 60000) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+            document.getElementById('reloj').innerHTML = `${d} días ${h}h ${m}m ${s}s`;
         }
     </script>
 </body>
