@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi niña (Aylee) ❤️</title>
+    <style>
+        body { 
+            background-color: #fce4ec; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            font-family: 'Arial', sans-serif; 
+        }
+        .card { 
+            background: #fff5f7; 
+            padding: 30px; 
+            border-radius: 25px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            text-align: center; 
+            width: 90%; 
+            max-width: 400px; 
+        }
+        .tree-container { 
+            width: 100%; 
+            height: 250px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-end; 
+            margin-bottom: 20px; 
+            cursor: pointer; 
+        }
+        .heart-icon { 
+            font-size: 80px; 
+            color: #e91e63; 
+            animation: pulse 1.5s infinite; 
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+        .hidden { display: none; }
+        h2 { color: #d81b60; margin-bottom: 10px; }
+        .message { color: #444; line-height: 1.6; margin: 15px 0; font-size: 1.1rem; }
+        .timer-digits { 
+            font-weight: bold; 
+            color: #ad1457; 
+            font-size: 1.1rem; 
+            margin-top: 10px; 
+            background: #fff; 
+            padding: 10px; 
+            border-radius: 10px; 
+            border: 1px solid #f8bbd0; 
+        }
+        .code-box { 
+            background: #1e1e1e; 
+            color: #d4d4d4; 
+            padding: 15px; 
+            border-radius: 10px; 
+            font-family: 'Consolas', monospace; 
+            font-size: 13px; 
+            width: 85%; 
+            max-width: 320px; 
+            margin-top: 20px; 
+            text-align: left; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="tree-container" id="trigger" onclick="revelar()">
+            <div class="heart-icon" id="main-heart">❤️</div>
+            <img id="tree-img" src="https://img.icons8.com/plasticine/200/love-tree.png" class="hidden">
+        </div>
+
+        <div id="content" class="hidden">
+            <h2>Para mi niña (Aylee) ❤️</h2>
+            <div class="message">
+                <strong>Isaac:</strong><br>
+                Si pudiera elegir un lugar seguro, sería a tu lado.<br>
+                Cuanto más tiempo estoy contigo más te amo.
+            </div>
+            <div style="color: #888; font-size: 0.9rem;">Llevamos conociéndonos...</div>
+            <div class="timer-digits" id="contador">Calculando nuestro tiempo...</div>
+        </div>
+    </div>
+
+    <div class="code-box">
+        <span style="color: #569cd6;">.San_Valentin</span> {<br>
+        &nbsp;&nbsp;position: <span style="color: #ce9178;">absolute</span>;<br>
+        &nbsp;&nbsp;width: <span style="color: #ce9178;">90%</span>;<br>
+        &nbsp;&nbsp;font-family: <span style="color: #ce9178;">"Te Amo"</span>;<br>
+        }
+    </div>
+
+    <script>
+        function revelar() {
+            document.getElementById('main-heart').classList.add('hidden');
+            document.getElementById('tree-img').classList.remove('hidden');
+            document.getElementById('content').classList.remove('hidden');
+            setInterval(actualizarReloj, 1000);
+            actualizarReloj();
+        }
+
+        function actualizarReloj() {
+            // Se conocieron hace 91 días (15 de Noviembre 2025)
+            const fechaInicio = new Date(2025, 10, 15, 0, 0, 0); 
+            const ahora = new Date();
+            const diff = ahora - fechaInicio;
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / 1000 / 60) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            document.getElementById('contador').innerHTML = 
+                `${dias} días ${horas}h ${minutos}m ${segundos}s`;
+        }
+    </script>
+</body>
+</html>
